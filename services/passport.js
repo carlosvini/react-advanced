@@ -3,6 +3,12 @@ const User = require('../models/user');
 const config = require('../config');
 const { JwtStrategy, ExtractJwt } = require('passport-jwt');
 
+// Setup options for JWT Strategy
+const jwtOptions = {
+    jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+    secretOrKey: config.secret
+};
+
 // Create JWT strategy
 const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
     // See if the user ID in the payload exists in our database
@@ -18,3 +24,6 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
         }
     });
 });
+
+//  Tell passport to use this strategy
+passport.use(jwtLogin);
