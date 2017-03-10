@@ -12,6 +12,7 @@ export default function ({ dispatch }) {
                 // create a new action with the same type
                 // replace the promise with the response data
                 const newAction = { ...action, payload: response };
+
                 dispatch(newAction);
             });
     };
