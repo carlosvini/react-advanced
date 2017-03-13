@@ -14,4 +14,8 @@ class Feature extends Component {
     }
 }
 
-export default connect(null, actions)(Feature);
+function mapStateToProps(state) {
+    return { message: state.auth.message };
+}
+
+export default connect(mapStateToProps, actions)(Feature);
